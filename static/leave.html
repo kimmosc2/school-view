@@ -1,0 +1,969 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>翻转校园</title>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.5,user-scalable=yes"/>
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="./css/sm.min.css">
+
+    <link rel="stylesheet" href="./css/sm-extend.min.css">
+
+    <link rel="stylesheet" href="./css/wap.css">
+    <link rel="stylesheet" href="./css/icon-font.css">
+
+
+    <!--如果你用到了拓展包中的组件，还需要引用下面两个-->
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-store, must-revalidate">
+    <meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT">
+    <meta http-equiv="expires" content="0">
+    <meta name="format-detection" content="telephone=no, email=no"/>
+    <meta id="eqMobileViewport" name="viewport" content="width=320, initial-scale=1, maximum-scale=1, user-scalable=no"
+          servergenerated="true">
+
+    <style>html, body {
+            font-family: '微软雅黑';
+        }
+
+        body {
+            font-size: 0.75rem;
+            color: #666;
+        }
+
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .header-tab {
+            overflow: hidden;
+            background: #fff;
+        }
+
+        .list-block .item-content, .list-block .item-inner {
+            min-height: 2.2rem !important;
+        }
+
+        .list-block .item-content, .list-block .item-inners {
+            min-height: 1.5rem !important;
+        }
+
+        .list-block-con .item-content, .list-block-con .item-inners {
+            min-height: 1.2rem !important;
+        }
+
+        .list-block .item-inner {
+            padding-top: 0;
+            padding-bottom: 0;
+            padding-right: 0;
+        }
+
+        .list-block .item-title.label {
+            margin: 2px 0;
+        }
+
+        .box-imgs {
+            padding: 0.2rem 0.8rem;
+        }
+
+        .sc-img {
+            width: 3rem;
+            margin-right: 0.3rem;
+        }
+
+        .sc-img-msw {
+            width: 3rem;
+            margin-right: 0.3rem;
+        }
+
+        .box-bigimg {
+            display: none;
+            position: relative;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .filter {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 1);
+            width: 100%;
+            height: 100%;
+        }
+
+        .big-img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .close-big {
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: #fff;
+            font-size: 40px;
+            z-index: 999;
+        }
+
+        .bigbox {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            overflow: hidden;
+            z-index: 999;
+        }
+
+        .list-block .item-input {
+            padding: 0.6rem 0;
+            text-indent: 0.5rem;
+            font-size: 17px;
+        }
+
+        .cl-address {
+            color: #999;
+            font-size: 15px !important;
+        }
+
+        .sl-sta {
+            position: absolute;
+            top: 1.5rem;
+            right: 0.5rem;
+            color: #45bce6;
+        }
+
+        .wc-sta {
+            position: absolute;
+            top: 0.3rem;
+            right: 0.5rem;
+        }
+
+        .list-block-con .item-title.label {
+            color: #999;
+            font-size: 15px;
+            margin: 0;
+            text-indent: 0.5rem;
+            width: 4.3rem;
+        }
+
+        .list-block-con .item-input {
+            color: #999;
+            font-size: 15px;
+            padding: 0;
+            text-indent: 0;
+        }
+
+        .popups {
+            display: none;
+            position: relative;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 999;
+        }
+
+        .filters {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .close-btn {
+            position: absolute;
+            z-index: 999;
+            top: 2%;
+            right: 4%;
+            width: 28px;
+            height: 28px;
+            background: url("./img/icon-close.png") no-repeat;
+            background-size: 100%;
+        }
+
+        .main-pop {
+            position: absolute;
+            top: 4%;
+            left: 7%;
+            width: 86%;
+            height: 92%;
+            background: #fff;
+            border-radius: 4px;
+            padding: 0.5rem 0 1rem;
+            overflow-y: auto;
+            border-bottom: 10px solid #fff;
+        }
+
+        .tit-ready {
+            margin-bottom: 0rem;
+            background: url("./img/repair_state3.png") no-repeat;
+            background-size: auto 100%;
+            padding: 3px 0 3px 8px;
+            color: #fff;
+        }
+
+        .tit-readyBefore {
+            margin-bottom: 0rem;
+            background-size: auto 100%;
+            padding: 3px 0 3px 8px;
+            color: #fff;
+        }
+
+        .tit-ready2 {
+            margin-bottom: 0rem;
+            background: url("//img.schoopia.com/repairImg/repair_state2.png") no-repeat;
+            background-size: auto 100%;
+            padding: 3px 0 3px 8px;
+            color: #fff;
+        }
+
+        .tit-ready3 {
+            margin-bottom: 0rem;
+            background: url("//img.schoopia.com/repairImg/repair_state3.png") no-repeat;
+            background-size: auto 100%;
+            padding: 3px 0 3px 8px;
+            color: #fff;
+        }
+
+        .tit-ready0 {
+            margin-bottom: 0rem;
+            background: url("//img.schoopia.com/repairImg/repair_state0.png") no-repeat;
+            background-size: auto 100%;
+            padding: 3px 0 3px 8px;
+            color: #fff;
+        }
+
+        .tit-ready9 {
+            margin-bottom: 0rem;
+            background: url("//img.schoopia.com/repairImg/repair_state9.png") no-repeat;
+            background-size: auto 100%;
+            padding: 3px 0 3px 8px;
+            color: #fff;
+        }
+
+        .popup-list .list-block {
+            margin: 0;
+        }
+
+        .popup-list .list-block .item-input {
+            text-indent: 0;
+        }
+
+        .popup-list .list-block .item-inner {
+            min-height: 1.5rem !important;
+        }
+
+        .input-sb {
+            height: 1rem !important;
+        }
+
+        .link-bx {
+            float: left;
+            width: 50%;
+            text-align: center;
+            padding: 0.5rem 0;
+            color: #666;
+        }
+
+        .link-bx-active {
+            color: #45bce6;
+            border-bottom: 2px solid #45bce6;
+        }
+
+        .content {
+            top: 2.2rem;
+        }
+
+        .card {
+            margin: 0.4rem 0;
+            -webkit-border-radius: 0;
+            -moz-border-radius: 0;
+            border-radius: 0;
+            box-shadow: none;
+            position: relative;
+        }
+
+        .list-block .item-title.label {
+            width: 4.6rem;
+        }
+
+        .list-block, .list-block input[type=text] {
+            font-size: 0.75rem;
+            color: #666;
+        }
+
+        .list-blocks .item-inner:after {
+            background: transparent;
+        }
+
+        .box-update {
+            padding: 0.5rem 0.2rem 0.8rem 0.8rem;
+            overflow: hidden;
+        }
+
+        .update {
+            position: relative;
+            float: left;
+            width: 3rem;
+            height: 3rem;
+            background: url("./img/file-jia.png") no-repeat;
+            background-size: 100%;
+            margin-right: .9rem;
+        }
+
+        .updatemsw {
+            position: relative;
+            float: left;
+            width: 3rem;
+            height: 3rem;
+            background: url("./img/file-jia.png") no-repeat;
+            background-size: 100%;
+            margin-right: .9rem;
+        }
+
+        .box-submit {
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        .submit {
+            padding: 0.3rem 3rem;
+            color: #fff;
+            font-size: 0.85rem;
+            border: none;
+            background: #3399fe;
+            border-radius: 3px;
+        }
+
+        .submitCancel {
+            padding: 0.3rem 2rem;
+            color: #fff;
+            font-size: 0.75rem;
+            border: none;
+            background: darkgray;
+            border-radius: 3px;
+        }
+
+        .file {
+            opacity: 0;
+            z-index: 999;
+            width: 3rem;
+            font-size: 62px;
+        }
+
+        .remove {
+            width: 1.1rem;
+            height: 1.1rem;
+            background: #6eaae6;
+            border-radius: 3rem;
+            position: absolute;
+            top: -0.45rem;
+            right: -0.45rem;
+            color: #fff;
+            text-align: center;
+            line-height: .9rem;
+        }
+
+        @media screen and (max-width: 375px) {
+            .list-block-con .item-title.label {
+                font-size: 15px;
+                margin: 0;
+                text-indent: 0.5rem;
+                width: 4.3rem;
+            }
+
+            .list-block-con .item-input {
+                font-size: 15px;
+                padding: 0;
+                text-indent: 0;
+            }
+
+            .list-block .item-input {
+                font-size: 15px;
+            }
+        }
+
+        .line-sc {
+            margin: 0 0.5rem;
+            border-bottom: 1px solid #E8E8E8;
+        }
+
+        .list-block .item-inner:after {
+            background: none;
+        }
+
+        .item-input select {
+            font-size: 0.75rem;
+        }
+
+        .list-block .item-after {
+            max-height: initial;
+        }
+
+        .buttons-tab .button.active {
+            color: #45bce6;
+            border-color: #45bce6;
+        }
+
+        .list-block .item-title {
+            color: #000;
+        }
+
+        .list-block .item-input {
+            padding-right: 0.5rem;
+        }
+
+        .item-after .query {
+            color: #3399fe;
+            padding-right: 0.6rem;
+        }
+
+        .list-block .item-link-line .item-inner {
+            margin: 0 0.7rem;
+            padding-right: 1rem;
+            border-bottom: 1px solid #d6d6d6;
+            background-position: 100% center;
+            background-position: -webkit-calc(100% - -0.1rem) center;
+            background-position: calc(100% - -0.1rem) center;
+        }
+
+        .list-block .item-link-line:nth-last-of-type(1) .item-inner {
+            border-bottom: none;
+            padding-right: 0;
+        }
+
+        .item-link-line .item-title {
+            text-indent: 0;
+        }
+
+        .item-content-inline {
+            text-indent: 0 !important;
+        }
+
+        .list-block textarea {
+            padding: 1rem 0;
+            font-size: 0.75rem;
+        }
+
+        .list-block select {
+            text-align: right !important;
+        }
+
+        .modal-overlay.modal-overlay-visible, .popup-overlay.modal-overlay-visible, .preloader-indicator-overlay.modal-overlay-visible {
+            visibility: hidden;
+            opacity: 0;
+        }
+
+        .list-block.media-list .item-media img {
+            width: 3rem;
+            height: 3.9rem;
+        }
+
+        .list-block .item-media + .item-inner {
+            margin-left: 0;
+        }
+
+        #data-popup-about .item-inner, .list-block .item-subtitle {
+            font-size: 0.7rem !important;
+        }
+
+        .radio-box {
+            position: absolute;
+            top: 1.5rem;
+            right: 0rem;
+        }
+
+        .list-block.media-list {
+            background: #efeff4;
+        }
+
+        #data-popup-about ul {
+            background: #fff !important;
+            padding: 0 0.5rem;
+            margin-bottom: 8px;
+            box-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, .3);
+        }
+
+        .card-headers:after {
+            background: none;
+        }
+
+        .content-block {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 99999;
+            background: #fff;
+            margin: 0;
+            padding: 0.4rem;
+        }
+
+        .btn {
+            display: block;
+            text-align: center;
+            padding: 0.3rem;
+            color: #fff;
+            border-radius: 4px;
+        }
+
+        .btn-cancle {
+            background: #808080;
+        }
+
+        .btn-yes {
+            background: #3399fe;
+        }
+
+        .input-texts {
+            border: 1px solid #e1e1e1;
+            border-radius: 4px;
+            width: 100%;
+            padding: 0.3rem 0 0.3rem 0.5rem;
+        }
+
+        .list-block .item-input {
+            padding-right: 0.5rem;
+        }
+
+        .list-block .item-inners {
+            padding-right: 0.7rem;
+        }
+
+        .custom-input {
+            display: inline-block;
+            width: 100%;
+            border: none;
+            text-align: right;
+        }
+
+        .list-block .item-title.label.jName {
+            width: 5.6rem;
+        }
+
+        .list-block .item-title.label.jTelephone {
+            width: 6.6rem;
+        }</style>
+
+
+</head>
+<body>
+<div class="page-group">
+    <div class="page page-current">
+        <div class="content infinite-scroll" data-distance="100" style="top:0">
+            <div class="buttons-tab">
+                <a onclick="changTab1()" id="t_head1" class="tab-link  button active">请假报备</a>
+                <a onclick="changeTab2()" id="t_head2" class="tab-link   button ">报备记录</a>
+                <input type="hidden" id="tabId" value="">
+                <input type="hidden" id="reportToStateId">
+            </div>
+            <div>
+                <div class="tabs">
+                    <div id="tab1" class="tab active">
+                        <form id="consultEdit" ENCTYPE="multipart/form-data"
+                              ACTION="./leave_data/save" METHOD=POST target="hiddenframe">
+                            <div class="card">
+                                <div class="list-block">
+                                    <ul>
+                                        <li class="item-content">
+                                            <div class="item-inner"><samp class="item-title">请假人</samp>
+                                                <div id="sampState" style="margin-right: 30%" class="item-title">
+                                                    <samp>{{.Name}}</samp>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="list-block">
+                                    <ul>
+                                        <li class="item-content">
+                                            <div class="item-inner"><samp class="item-title">辅导员</samp>
+                                                <div style="margin-right: 30%" class="item-title">
+                                                    <samp>{{.Teacher}}</samp>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="list-block">
+                                    <ul>
+                                        <li class="item-content item-link">
+                                            <div class="item-inner">
+                                                <div class="item-title">请假类型</div>
+                                                <div id="selectType" class="item-after">
+                                                    <select id="typeId" name="typeId" class="input-text"
+                                                            style="display: inline;">
+                                                        <option value="1">事假</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="list-block">
+                                    <ul>
+                                        <li class="item-content item-link item-link-line">
+                                            <div class="item-inner">
+                                                <div class="item-title">开始时间</div>
+                                                <div class="item-after" style="width: 70%;">
+                                                    <input type="text" readonly id="startTime" name="startTime"
+                                                           onclick="openPopTime();" class="input-text"
+                                                           style="background: #fff;text-align: right;"
+                                                           placeholder="请选择"/>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <input type="hidden" id="dateSelect"/>
+                                        <li class="item-content item-link item-link-line">
+                                            <div class="item-inner">
+                                                <div class="item-title">结束时间</div>
+                                                <div class="item-after" style="width: 70%;">
+                                                    <input type="text" readonly id="endTime" name="endTime"
+                                                           onclick="openPopTime(2);" class="input-text"
+                                                           style="background: #fff;text-align: right;"
+                                                           placeholder="请选择"/>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="item-content item-link-line">
+                                            <div class="item-inner">
+                                                <div class="item-title">请假时长</div>
+                                                <div id="duration" class="item-after"><samp>0天</samp></div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="list-block list-blocks">
+                                    <div class="item-content">
+                                        <div class="mleft item-inner">
+                                            <div class="item-title label" style="width:100%">说明附件（最多三张）</div>
+                                        </div>
+                                    </div>
+                                    <div class="box-update" id="imgs">
+                                        <!--图片上传-->
+                                        <a href="javascript:;" class="update">
+                                            <!--<input type="file" data="1" name="file1" id="file1" class="file"
+                                                   onchange="upImg(this.files);"/>-->
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="list-block">
+                                    <div class="item-content">
+                                        <div class="mleft item-inner">
+                                            <div class="item-title label">请假事由</div>
+                                            <div class="item-input">
+                                                <textarea name="remarks" id="remarks" maxlength="40" cols="5"
+                                                          placeholder="(40字以内)"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="list-block">
+                                    <div class="item-content">
+                                        <div class="mleft item-inner item-inners">
+                                            <div class="item-title label">离校去向</div>
+                                            <div class="item-input">
+                                                <input class="custom-input" name="whereTo" id="whereTo" maxlength="15"
+                                                       cols="5" placeholder="请输入离校去向(15字以内)">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="list-block">
+                                    <div class="item-content">
+                                        <div class="mleft item-inner item-inners">
+                                            <div class="item-title label" style="width: 50%;">紧急联系人</div>
+                                            <div class="item-input">
+                                                <input class="custom-input" name="ecName" id="ecName" maxlength="10"
+                                                       placeholder="请输入紧急联系人">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="list-block">
+                                    <div class="item-content">
+                                        <div class="mleft item-inner item-inners">
+                                            <div class="item-title label" style="width: 50%;">紧急联系人电话</div>
+                                            <div class="item-input">
+                                                <input class="custom-input" name="ecTelephone" id="ecTelephone"
+                                                       maxlength="11" placeholder="请输入紧急联系人电话">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                        <iframe name='hiddenframe' id="hiddenframe" style='display: none'>
+                            <script>
+
+                            </script>
+                        </iframe>
+                        <input id="xx" type="hidden" value="0">
+                        <div class="box-submit" id="updateBtn">
+                            <a class="submit" id="saveBtn" onclick="formSubmit();">提 交</a>
+                        </div>
+                    </div>
+                    <div id="tab2" class="tab">
+                        <div id="data-container" style="margin:0;">
+                            <div class="card " onclick="openPop();">
+                                <div class="wc-sta right-sta-cancel"><samp style="color: #00B83F">已通过</samp></div>
+                                <div class="list-block">
+                                    <div class="item-content">
+                                        <div class="mleft item-inner item-inners">
+                                            <div class="item-input"><span>{{.Name}}</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-block list-block-con">
+                                    <div class="item-content">
+                                        <div class="mleft item-inners">
+                                            <div class="item-input" style="padding: .3rem .2rem .6rem 0.5rem;">请假类型：事假
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-block list-block-con">
+                                    <div class="item-content">
+                                        <div class="mleft item-inners">
+                                            <div class="item-input" style="padding: .3rem .2rem .6rem 0.5rem;">
+                                                <!--开始时间：2020-11-14 08:00-->
+                                                开始时间：{{.StartTime | StartCompute}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-block list-block-con">
+                                    <div class="item-content">
+                                        <div class="mleft item-inners">
+                                            <div class="item-input" style="padding: .3rem .2rem .6rem 0.5rem;">
+                                                <!--结束时间：2020-11-14 20:00-->
+                                                结束时间：{{.EndTime | EndCompute}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-block list-block-con">
+                                    <div class="item-content">
+                                        <div class="mleft item-inners">
+                                            <div class="item-input" style="padding: .3rem .2rem .8rem 0.5rem;">
+                                                请假时长：{{DurationCompute .StartTime .EndTime }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="text-align: center"><samp id="tishi">没有检索到更多数据！</samp></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="popups" id="popups">
+            <div class="filters" onclick="closePop();"></div>
+            <div class="close-btn" onclick="closePop();"></div>
+            <div class="main-pop">
+                <div>
+                    <div id="askState" style="margin-bottom: .4rem" class="tit-ready3">已通过</div>
+                    <div class="popup-list">
+                        <div class="list-block">
+                            <div class="item-content">
+                                <div class="mleft item-inner">
+                                    <div class="item-title label" style="text-align: right;padding-right: 15px;">类型:
+                                    </div>
+                                    <div class="item-input" id="stateType">
+                                        事假
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-block">
+                            <div class="item-content">
+                                <div class="mleft item-inner">
+                                    <div class="item-title label" style="text-align: right;padding-right: 15px;">请假人:
+                                    </div>
+                                    <div class="item-input" id="repairType">
+                                        {{.Name}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-block">
+                            <div class="item-content">
+                                <div class="mleft item-inner">
+                                    <div class="item-title label" style="text-align: right;padding-right: 15px;">辅导员:
+                                    </div>
+                                    <div class="item-input" id="mobileStr">
+                                        {{.Teacher}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-block">
+                            <div class="item-content">
+                                <div class="mleft item-inner">
+                                    <div class="item-title label">申请时间:</div>
+                                    <div class="item-input" id="updateTime">
+                                        {{ ApplyTime }}
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-block">
+                            <div class="item-content">
+                                <div class="mleft item-inner">
+                                    <div class="item-title label">开始时间:</div>
+                                    <div class="item-input" id="subContent">
+                                        {{ StartCompute .StartTime}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-block">
+                            <div class="item-content">
+                                <div class="mleft item-inner">
+                                    <div class="item-title label">结束时间:</div>
+                                    <div class="item-input" id="endTimeContent">
+                                        {{ EndCompute .EndTime }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-block">
+                            <div class="item-content">
+                                <div class="mleft item-inner">
+                                    <div class="item-title label">请假时长:</div>
+                                    <div class="item-input" id="subLocation">
+                                        {{ DurationCompute .StartTime .EndTime }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-block">
+                            <div class="item-content">
+                                <div class="mleft item-inner">
+                                    <div class="item-title label">请假事由:</div>
+                                    <div class="item-input" id="subTime" style="word-break: break-all;height: 100%">
+                                        {{ .Reason }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-block">
+                            <div class="item-content">
+                                <div class="mleft item-inner">
+                                    <div class="item-title label">离校去向:</div>
+                                    <div class="item-input" id="subWhereTo" style="word-break: break-all;height: 100%">
+                                        {{ .Direction }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-block">
+                            <div class="item-content">
+                                <div class="mleft item-inner">
+                                    <div class="item-title label jName">紧急联系人:</div>
+                                    <div class="item-input" id="subEcName" style="word-break: break-all;height: 100%">
+                                        {{ .Contact }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-block">
+                            <div class="item-content">
+                                <div class="mleft item-inner">
+                                    <div class="item-title label jTelephone">紧急联系人电话:</div>
+                                    <div class="item-input" id="subEcTelephone"
+                                         style="word-break: break-all;height: 100%">
+                                        {{ .ContactTel }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-block">
+                            <div class="box-imgs" id="imgsList">
+                                <img class="sc-img" style="width: 3rem;height: 3rem"
+                                     src="http://img.schoopia.com/askForLeave/11834/20201113/160523284910.jpg"
+                                     onclick="imgEnlarge('todo:img url');"
+                                     alt="">
+                            </div>
+                        </div>
+
+                        <div class="list-block">
+                            <div class="item-content">
+                                <div class="mleft item-inner" id="reportToTime">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-block">
+                            <div class="item-content">
+                                <div class="mleft item-inner" id="reportToCreateTime">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div style="margin-top: 30px" class="list-block">
+                            <div class="item-content">
+                                <div class="mleft item-inner">
+
+                                    <div align="center" id="czAskState" style="width: 100%">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="subId"/>
+                    <input type="hidden" id="openPopTime3"/>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="./js/leave.js"></script>
+    </div>
+</div>
+</body>
+</html>

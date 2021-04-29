@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首次使用</title>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.5,user-scalable=yes"/>
+    <link rel="stylesheet" href="./css/sm.min.css">
+    <link rel="stylesheet" href="./css/sm-extend.min.css">
+    <link rel="stylesheet" href="./css/wap.css">
+    <link rel="stylesheet" href="./css/icon-font.css">
+    <style>
+        .box-submit {
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        .submit {
+            position: fixed;
+            bottom: 10px;
+            left: 30%;
+            padding: 0.3rem 3rem;
+            color: #fff;
+            font-size: 0.85rem;
+            border: none;
+            background: #3399fe;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+<h3 style="text-align: center">检测到您是首次使用,请完善以下信息</h3>
+<div>
+    <form action="/leave_data/save" method="post" id="leaveForm">
+
+        <div class="card">
+            <div class="list-block">
+                <ul>
+                    <li class="item-content">
+                        <div class="item-inner"><samp class="item-title">姓名</samp>
+                            <div style="margin-right: 10%" class="item-title">
+                                <samp>{{.Name}}<input type="text" name="code" class="custom-input"
+                                                      value="{{.SchoolNumber}}" ></samp>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="card">
+            <div class="list-block">
+                <ul>
+                    <li class="item-content">
+                        <div class="item-inner"><samp class="item-title">请假事由</samp>
+                            <div style="margin-right: 10%" class="item-title">
+                                <samp><input type="text" name="reason" class="custom-input" placeholder="请输入请假事由" value="回家有事"></samp>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="list-block">
+                <ul>
+                    <li class="item-content">
+                        <div class="item-inner"><samp class="item-title">去向</samp>
+                            <div style="margin-right: 10%" class="item-title">
+                                <samp><input type="text" name="direction" placeholder="尽量写市内" class="custom-input" value="郑州市管城区"></samp>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="list-block">
+                <ul>
+                    <li class="item-content">
+                        <div class="item-inner"><samp class="item-title">紧急联系人</samp>
+                            <div style="margin-right: 10%" class="item-title">
+                                <samp><input type="text" name="contact" class="custom-input" placeholder="请输入紧急联系人" value="张三"></samp>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="list-block">
+                <ul>
+                    <li class="item-content">
+                        <div class="item-inner"><samp class="item-title">紧急联系人手机号</samp>
+                            <div style="margin-right: 0%" class="item-title">
+                                <samp><input type="text" name="contact_tel" class="custom-input" value="13283831285"></samp>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!--<h4 style="text-align: center">以下信息请务必正确填写,提交后无法修改</h4>-->
+        <div class="card">
+            <div class="list-block">
+                <ul>
+                    <li class="item-content">
+                        <div class="item-inner"><samp class="item-title">辅导员</samp>
+                            <div style="margin-right: 10%" class="item-title">
+                                <samp><input type="text" name="teacher" class="custom-input" value="李四"></samp>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="box-submit" id="updateBtn">
+    <a class="submit" id="saveBtn" onclick="formSubmit();">提 交</a>
+</div>
+</body>
+<script>
+    function formSubmit() {
+        let leave_form = document.getElementById('leaveForm');
+        leave_form.submit();
+    }
+</script>
+</html>

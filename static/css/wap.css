@@ -1,0 +1,50 @@
+html, body {
+    font-family: '寰蒋闆呴粦';
+    /*font-size:1rem;*/
+}
+
+#top-bar {
+    top: 0;
+    background: rgba(230, 176, 54, 0.98);
+    height: 2.8rem;
+}
+
+#top-bar a {
+    color: #f5f5f5;
+    font-size:0.95rem;
+    height: 2.8rem
+}
+
+#top-bar a.active {
+    color: #fff;
+    height: 2.8rem;
+}
+
+#top-bar a.active .arrow-up {
+    display: block;
+}
+
+#top-bar.bar-tab ~ .content {
+    top: 2.8rem;
+    bottom: 0.2rem;
+}
+.list-block{
+    font-size:0.85rem;
+}
+.list-block .item-content {
+    padding-left: 0;
+    text-indent: .7rem;
+    /*min-height:2.8rem;*/
+}
+
+.arrow-up {
+    display: none;
+    position: absolute;
+    bottom: -0.1rem;
+    left: 40%;
+    width: 0;
+    height: 0;
+    border-left: 0.5rem solid transparent;
+    border-right: 0.5rem solid transparent;
+    border-bottom: 0.5rem solid #efefef;
+}
